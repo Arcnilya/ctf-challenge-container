@@ -1,0 +1,17 @@
+x-challenges:
+    FLAG: # must match the env. variable in services
+        name: "Challenge Name"
+        description: "Challenge description"
+        category: "Web"
+        score: 100
+        connection-info: 'http://{HOST}:{PORT}'
+        port-id: '1337' # must match the host port in services
+
+services:
+    app:
+        build: .
+        image: docker.cs.kau.se/csma/cyber-range/challenges/example-challenge
+        environment:
+            FLAG: 'crl{DYNAMIC}' # or 'flag{static}'
+        ports:
+            - '1337:80/tcp'
